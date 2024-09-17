@@ -8,7 +8,6 @@ public class IsInteractable : MonoBehaviour
 {
     public GameObject InteractableUI;
     [SerializeField] Interaction PortalInteraction;
-    [SerializeField] Interaction TestInteraction;
 
     void Start()
     {
@@ -23,7 +22,7 @@ public class IsInteractable : MonoBehaviour
 
     public void InteractableUIOpen()
     {
-        if(PortalInteraction.Interactable == true || TestInteraction.Interactable == true)
+        if(PortalInteraction.Interactable == true)
         {
         InteractableUI.SetActive(true);
         }
@@ -35,7 +34,7 @@ public class IsInteractable : MonoBehaviour
 
     void LoadNextLevel()
     {
-        if(PortalInteraction.Interactable == true || TestInteraction.Interactable == true && InteractableUI.activeSelf && Input.GetKeyDown(KeyCode.F))
+        if(PortalInteraction.Interactable == true && InteractableUI.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
             SceneManager.LoadScene("Level 2");
         }

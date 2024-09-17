@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: a191ff8ac272a3f498e7d573e0d3da3e, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -5075,7 +5075,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractableUI: {fileID: 1953376928}
   PortalInteraction: {fileID: 262067866}
-  TestInteraction: {fileID: 1836510798}
 --- !u!114 &905689361
 MonoBehaviour:
   m_ObjectHideFlags: 0
