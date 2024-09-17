@@ -43,8 +43,8 @@ MonoBehaviour:
     y: 0
     width: 1518
     height: 435
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 201, y: 221}
+  m_MaxSize: {x: 4001, y: 4021}
   m_ActualView: {fileID: 17}
   m_Panes:
   - {fileID: 17}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 50}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: 99
+  controlID: 98
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 100}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 1
-  controlID: 49
+  controlID: 48
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -196,7 +196,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 50}
   m_MaxSize: {x: 24288, y: 8096}
   vertical: 0
-  controlID: 50
+  controlID: 49
 --- !u!114 &9
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -242,8 +242,8 @@ MonoBehaviour:
     y: 0
     width: 1668
     height: 864
-  m_MinSize: {x: 202, y: 221}
-  m_MaxSize: {x: 4002, y: 4021}
+  m_MinSize: {x: 200, y: 200}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -350,7 +350,7 @@ MonoBehaviour:
     m_SkipHidden: 1
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes
+    - Assets/Scripts/Management
     m_Globs: []
     m_OriginalText: 
     m_ImportLogFlags: 0
@@ -358,30 +358,30 @@ MonoBehaviour:
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes
+  - Assets/Scripts/Management
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: C:\Users\kenne\OneDrive\Documents\GitHub\TowerOfTrials\TOT
+  m_LastProjectPath: C:\Users\Calib\OneDrive\Desktop\TowerOfTrials\TOT
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 441e0000
-    m_LastClickedID: 7748
-    m_ExpandedIDs: 00000000941e0000cc6100008c62000090620000986200009c620000a8620000b0620000c4620000e062000000ca9a3bffffff7f
+    m_SelectedIDs: 8c1e0000
+    m_LastClickedID: 7820
+    m_ExpandedIDs: 00000000641e0000781e0000841e0000a81e0000e01e0000141f0000201f0000341f00003c1f0000601f0000841f0000bc6d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Sounds
+      m_OriginalName: Sounds
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 7796
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_SearchString: 
@@ -395,7 +395,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000941e0000cc610000
+    m_ExpandedIDs: 00000000841e0000a81e0000e01e0000141f0000201f0000341f00003c1f0000601f0000841f0000bc6d0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -488,9 +488,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: da610000
-      m_LastClickedID: 0
-      m_ExpandedIDs: 3e9effff6ee5fffface6ffff
+      m_SelectedIDs: c293ffff
+      m_LastClickedID: -27710
+      m_ExpandedIDs: cc2effff5c6affffc293ffffa0d4ffff5ad5ffff38d7ffffc2d8ffff3a810000748200009e82000070830000f483000078850000b8850000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -909,9 +909,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 35.181305, y: 2.8765628, z: 78.10653}
+    m_Target: {x: 4.3048534, y: 4.3044467, z: 2.2713656}
     speed: 2
-    m_Value: {x: 35.181305, y: 2.8765628, z: 78.10653}
+    m_Value: {x: 4.3048534, y: 4.3044467, z: 2.2713656}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -957,20 +957,20 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
-    m_Target: {x: -0.046437915, y: -0.044640727, z: 0.002067609, w: -0.9979298}
+    m_Target: {x: 0.08581085, y: -0.71723884, z: 0.08975892, w: 0.6856684}
     speed: 2
-    m_Value: {x: -0.046437513, y: -0.04464034, z: 0.002067591, w: -0.9979211}
+    m_Value: {x: 0.08581115, y: -0.7172414, z: 0.08975924, w: 0.68567085}
   m_Size:
-    m_Target: 10.813203
+    m_Target: 3.1991305
     speed: 2
-    m_Value: 10.813203
+    m_Value: 3.1991305
   m_Ortho:
     m_Target: 0
     speed: 2
     m_Value: 0
   m_CameraSettings:
-    m_Speed: 1.0204899
-    m_SpeedNormalized: 0.51
+    m_Speed: 0.84058
+    m_SpeedNormalized: 0.42
     m_SpeedMin: 0.001
     m_SpeedMax: 2
     m_EasingEnabled: 1
