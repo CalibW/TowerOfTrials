@@ -12,13 +12,13 @@ public class EnemyAttributes : MonoBehaviour
     public float Agility;
     public float MagicPower;
     public float ExperienceDropped;
+    public float AmountKilled;
     public ParticleSystem DeathEffect;
     public float minRandom;
     public float maxRandom;
     public GameObject Enemy;
     [SerializeField] PlayerAttributes PlayerAtm;
     [SerializeField] EnemySpawning EnemySpawns;
-
 
     void Update()
     {
@@ -32,6 +32,7 @@ public class EnemyAttributes : MonoBehaviour
           Destroy(gameObject);
           PlayerAtm.Experience += ExperienceDropped;
           EnemySpawns.EnemyCount--;
+          AmountKilled++;
      }
     }
 
