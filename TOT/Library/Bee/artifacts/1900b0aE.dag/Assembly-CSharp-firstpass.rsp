@@ -356,6 +356,8 @@
 "Assets/Plugins/Pixelplacement/iTween/Sample/MoveSample.cs"
 "Assets/Plugins/Pixelplacement/iTween/Sample/RotateSample.cs"
 "Assets/Plugins/Pixelplacement/iTween/Sample/SampleInfo.cs"
+"Assets/Plugins/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/MouseLook.cs"
+"Assets/Plugins/Polytope Studio/Lowpoly_Demos/Environment_Free/Helpers/PlayerMovement.cs"
 -langversion:9.0
 
 /deterministic
