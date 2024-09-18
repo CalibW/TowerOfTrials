@@ -134,3 +134,4 @@ public class PlayerMovement : MonoBehaviour
         dashing = true;
     }
 }
+

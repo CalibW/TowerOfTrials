@@ -25,21 +25,30 @@ public class EnemySpawning : MonoBehaviour
 
     IEnumerator EnemySpawn()
     {
-        while(RemainingSpawns > 0)
+        while (RemainingSpawns > 0)
+    {
+        if (MaxEnemy <= MaxEnemyAllowed)
         {
-            if (MaxEnemy <= MaxEnemyAllowed)
+            if (EnemyCount < MaxEnemy)
             {
-                if (EnemyCount < MaxEnemy)
+                Vector3 spawnPosition;
+                if (TryGetRandomNavMeshPositionInRing(out spawnPosition))
                 {
-                    Vector3 spawnPosition;
-                    if (TryGetRandomNavMeshPositionInRing(out spawnPosition))
+                    // Spawn a random enemy and make sure it has the proper tag and attributes
+                    GameObject enemyToSpawn = Random.value > 0.5f ? Enemy1 : Enemy2;
+                    var spawnedEnemy = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+
+                    // Ensure the spawned enemy is tagged correctly
+                    if (spawnedEnemy.CompareTag("BasicEnemy"))
                     {
-                        GameObject enemyToSpawn = Random.value > 0.5f ? Enemy1 : Enemy2;
-                        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
-                        EnemyCount++;
-                        RemainingSpawns--;
+                        // Optionally, configure additional attributes if needed
                     }
+
+                    EnemyCount++;
+                    RemainingSpawns--;
                 }
+            }
+
                 
                 yield return new WaitForSeconds(SpawnRate);
             }

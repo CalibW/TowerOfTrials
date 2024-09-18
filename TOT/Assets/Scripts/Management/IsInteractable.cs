@@ -36,7 +36,7 @@ public class IsInteractable : MonoBehaviour
     {
         if(PortalInteraction.Interactable == true && InteractableUI.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
-            SceneManager.LoadScene("Level 2");
+            SceneManager.LoadScene("Calib");
         }
     }
 }

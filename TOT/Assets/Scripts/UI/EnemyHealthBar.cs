@@ -73,10 +73,19 @@ public class EnemyHealthBar : MonoBehaviour
     public float recoveryInterval;
     public float health;
     [SerializeField] private EnemyAttributes enemyatm;
+    [SerializeField] private WolfEnemyAttributes WEnemyAtm;
 
     void Start()
     {
         if (enemyatm != null)
+        {
+            health = enemyatm.Health;
+            healthSlider.maxValue = enemyatm.Health;
+            easeHealthSlider.maxValue = enemyatm.Health;
+            healthSlider.value = health;
+        }
+
+        if (WEnemyAtm != null)
         {
             health = enemyatm.Health;
             healthSlider.maxValue = enemyatm.Health;

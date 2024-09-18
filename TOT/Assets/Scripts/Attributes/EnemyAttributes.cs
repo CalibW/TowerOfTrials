@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.SocialPlatforms;
 
 public class EnemyAttributes : MonoBehaviour
 {
@@ -12,7 +12,8 @@ public class EnemyAttributes : MonoBehaviour
     public float Agility;
     public float MagicPower;
     public float ExperienceDropped;
-    public float AmountKilled;
+    public static float BasicAmountKilled;
+    public static float BossKilled;
     public ParticleSystem DeathEffect;
     public float minRandom;
     public float maxRandom;
@@ -24,15 +25,27 @@ public class EnemyAttributes : MonoBehaviour
     {
      if(Health <= 0)
      {
-          // Instantiate the death effect
-          var DeathEffectStart = Instantiate(DeathEffect, Enemy.transform.position, Quaternion.identity);
-
-          // Destroy the particle system after its lifetime ends
-          Destroy(DeathEffectStart.gameObject, DeathEffectStart.main.startLifetime.constant);
-          Destroy(gameObject);
-          PlayerAtm.Experience += ExperienceDropped;
-          EnemySpawns.EnemyCount--;
-          AmountKilled++;
+          if(CompareTag("BasicEnemy"))
+          {
+               // Instantiate the death effect
+               var DeathEffectStart = Instantiate(DeathEffect, Enemy.transform.position, Quaternion.identity);
+               // Destroy the particle system after its lifetime ends
+               Destroy(DeathEffectStart.gameObject, DeathEffectStart.main.startLifetime.constant);
+               Destroy(gameObject);
+               PlayerAtm.Experience += ExperienceDropped;
+               EnemySpawns.EnemyCount--;
+               BasicAmountKilled++;
+          }
+          else if(CompareTag("Boss"))
+          {
+               // Instantiate the death effect
+               var DeathEffectStart = Instantiate(DeathEffect, Enemy.transform.position, Quaternion.identity);
+               // Destroy the particle system after its lifetime ends
+               Destroy(DeathEffectStart.gameObject, DeathEffectStart.main.startLifetime.constant);
+               Destroy(gameObject);
+               PlayerAtm.Experience += ExperienceDropped;
+               BossKilled++;
+          }
      }
     }
 

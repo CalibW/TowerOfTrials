@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - Ground
   - FireBall
+  - BasicEnemy
+  - Boss
   layers:
   - Default
   - TransparentFX
