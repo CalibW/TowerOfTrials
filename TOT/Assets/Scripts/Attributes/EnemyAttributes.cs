@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
@@ -18,8 +19,8 @@ public class EnemyAttributes : MonoBehaviour
     public float minRandom;
     public float maxRandom;
     public GameObject Enemy;
-    [SerializeField] PlayerAttributes PlayerAtm;
-    [SerializeField] EnemySpawning EnemySpawns;
+    public PlayerAttributes PlayerAtm;
+    public EnemySpawning EnemySpawns;
 
     void Update()
     {

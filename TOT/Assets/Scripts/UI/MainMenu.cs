@@ -6,15 +6,24 @@ using UnityEngine.SceneManagement;
 [System.Diagnostics.DebuggerDisplay("{" + nameof(GetDebuggerDisplay) + "(),nq}")]
 public class MainMenu : MonoBehaviour
 {
+    void Awake()
+    {
+        Time.timeScale = 0;
+    }
+
+    void Start()
+    {
+        Time.timeScale = 0;
+    }
     public void PlayGame ()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene("Calib");;
+        SceneManager.LoadScene("Level 1");;
     } 
 
     public void LoadSETTINGSMENU()
     {
-        Time.timeScale = 1f;
+        Time.timeScale = 0;
         SceneManager.LoadScene("SETTINGSMENU");
     } 
     

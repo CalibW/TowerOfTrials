@@ -40,7 +40,6 @@ public class SettingsMenu : MonoBehaviour
 {
     public void LoadMAINMENU()
     {
-        Time.timeScale = 1f;
         SceneManager.LoadScene("MAINMENU");
     }
 }

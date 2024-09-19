@@ -24,8 +24,8 @@ public class PlayerMovementTOT : MonoBehaviour
     bool isGrounded;
     bool crouching;
     bool dashing = true;
-    [SerializeField] PlayerAttributes pa;
-    [SerializeField] ManaBar mb;
+    public PlayerAttributes pa;
+    public ManaBar mb;
 
     // if the player goees below the y threshold teleport them back to where they begun at 0, 2, 0
     void FixedUpdate()
@@ -108,19 +108,6 @@ public class PlayerMovementTOT : MonoBehaviour
         velocity.y += gravity * Time.deltaTime;
 
         controller.Move(velocity * Time.deltaTime);
-           
-        //dashing
-    //     if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && Time.time >= timeToDash && pa.Mana >= 5f)
-    // {
-    //     StartCoroutine(Dash());
-    //     timeToDash = Time.time + 1/dashRate;
-        
-    //     mb.loseDashMana(5);
-    // }
-    //  else if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && pa.Mana < 5f)
-    //     {
-    //         Debug.Log("Out of Mana to Dash");
-    //     }
 
        //dashing
         if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && ctime > dashRate && pa.Mana >= 5f)
@@ -137,9 +124,6 @@ public class PlayerMovementTOT : MonoBehaviour
 
     }
 
-
-    
-    
     private IEnumerator Dash()
     {
         dashing = true;

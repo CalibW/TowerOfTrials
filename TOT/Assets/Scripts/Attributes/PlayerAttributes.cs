@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
+using UnityEngine.SceneManagement;
+using UnityEngine.Assertions.Must;
 
 public class PlayerAttributes : MonoBehaviour
 {
@@ -21,17 +23,20 @@ public class PlayerAttributes : MonoBehaviour
     public float StatPointsGiven;
     public float minRandom;
     public float maxRandom;
-    [SerializeField] EnemyAttributes SlimeATM;
-    [SerializeField] WolfEnemyAttributes WolfATM;
-    [SerializeField] StatsMenu StatMenu;
-    [SerializeField] PauseMenu PauseMenu;
-    [SerializeField] ManaBar ManaBar;
-    [SerializeField] HealthBar HealthBar;
+    public  GameObject player;
+    public EnemyAttributes SlimeATM;
+    public WolfEnemyAttributes WolfATM;
+    public StatsMenu StatMenu;
+    public PauseMenu PauseMenu;
+    public ManaBar ManaBar;
+    public HealthBar HealthBar;
+    public EnemySpawning EnemySpawning;
    private string saveFilePath;
 
       void Awake()
    {
       LoadPlayerData(); // Automatically load the data when the game starts
+
    }
     void Start()
     {
@@ -43,6 +48,14 @@ public class PlayerAttributes : MonoBehaviour
 
     void Update()
     {
+      if(Health == 0)
+      {
+         SceneManager.LoadScene("LOOSINGMENU");
+         Time.timeScale = 1;
+         Cursor.lockState = CursorLockMode.None;
+         Cursor.visible = true;
+         Destroy(gameObject);
+      }
       if(Level == 0)
       {
          ExperienceToNextLevel = FirstLevelExperience;
@@ -132,6 +145,7 @@ public class PlayerAttributes : MonoBehaviour
             WolfHealth = WolfATM.Health,
             WolfrunSpeed = WolfATM.runSpeed,
             WolfwalkSpeed = WolfATM.walkSpeed,
+
 
             //Pause and Stats Menu
             IsStatsMenuOpen = StatMenu.StatsMenuOpen,

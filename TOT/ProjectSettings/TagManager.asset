@@ -9,6 +9,7 @@ TagManager:
   - FireBall
   - BasicEnemy
   - Boss
+  - PlayerStartLevel2
   layers:
   - Default
   - TransparentFX

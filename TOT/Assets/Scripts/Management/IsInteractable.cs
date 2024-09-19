@@ -7,22 +7,33 @@ using UnityEngine.SceneManagement;
 public class IsInteractable : MonoBehaviour
 {
     public GameObject InteractableUI;
-    [SerializeField] Interaction PortalInteraction;
+    public GameObject InteractableUI2;
+    public Interaction Portal1Interaction;
+    public Interaction Portal2Interaction;
+
+    void Awake()
+    {
+        InteractableUI.SetActive(false);
+        InteractableUI2.SetActive(false);
+    }
 
     void Start()
     {
         InteractableUI.SetActive(false);
+        InteractableUI2.SetActive(false);
     }
 
     void Update()
     {
-        InteractableUIOpen();
+        InteractableUIOpenLevel1();
         LoadNextLevel();
+        InteractableUIOpenLevel2();
+        Escape();
     }
 
-    public void InteractableUIOpen()
+    public void InteractableUIOpenLevel1()
     {
-        if(PortalInteraction.Interactable == true)
+        if(Portal1Interaction.Interactable == true)
         {
         InteractableUI.SetActive(true);
         }
@@ -31,12 +42,35 @@ public class IsInteractable : MonoBehaviour
         InteractableUI.SetActive(false);
         }
     }
+    public void InteractableUIOpenLevel2()
+    {
+        if(Portal2Interaction.Interactable == true)
+        {
+        InteractableUI2.SetActive(true);
+        }
+        else
+        {
+        InteractableUI2.SetActive(false);
+        }
+    }
 
     void LoadNextLevel()
     {
-        if(PortalInteraction.Interactable == true && InteractableUI.activeSelf && Input.GetKeyDown(KeyCode.F))
+        if(Portal1Interaction.Interactable == true && InteractableUI.activeSelf && Input.GetKeyDown(KeyCode.F))
         {
             SceneManager.LoadScene("Calib");
+            InteractableUI.SetActive(false);
+            Portal1Interaction.Interactable = false;
+        }
+    }
+
+    void Escape()
+    {
+        if(Portal2Interaction.Interactable == true && InteractableUI2.activeSelf && Input.GetKeyDown(KeyCode.F))
+        {
+            SceneManager.LoadScene("WINNINGMENU");
+            InteractableUI2.SetActive(false);
+            Portal2Interaction.Interactable = false;
         }
     }
 }
