@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovementTOT : MonoBehaviour
 {
     public CharacterController controller;
     public float gravity = -9.81f;
@@ -11,8 +11,8 @@ public class PlayerMovement : MonoBehaviour
     public float dashingPower = 20f;
     public float dashingTime = 0.3f;
     public float dashingCooldown = 0.75f;
+    public float ctime;
     public float dashRate = 2;
-    private float timeToDash;
     public Vector3 offset;
     public Transform player;
     public Transform groundCheck;
@@ -39,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
     // check to see if the player is grounded, and if the player is grounded set the y velocity to -2.
     void Update()
     {
+        ctime += Time.deltaTime;
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
         if(isGrounded && velocity.y < 0)
@@ -109,10 +110,24 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(velocity * Time.deltaTime);
            
         //dashing
-        if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && Time.time >= timeToDash && pa.Mana >= 5f)
+    //     if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && Time.time >= timeToDash && pa.Mana >= 5f)
+    // {
+    //     StartCoroutine(Dash());
+    //     timeToDash = Time.time + 1/dashRate;
+        
+    //     mb.loseDashMana(5);
+    // }
+    //  else if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && pa.Mana < 5f)
+    //     {
+    //         Debug.Log("Out of Mana to Dash");
+    //     }
+
+       //dashing
+        if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && ctime > dashRate && pa.Mana >= 5f)
     {
+        ctime = 0;
         StartCoroutine(Dash());
-        timeToDash = Time.time + 1/dashRate;
+        
         mb.loseDashMana(5);
     }
      else if(Input.GetKeyDown(KeyCode.C) && dashing && isGrounded == true && crouching == false && pa.Mana < 5f)
@@ -121,6 +136,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
     }
+
 
     
     

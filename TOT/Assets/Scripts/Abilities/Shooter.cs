@@ -13,7 +13,7 @@ public class Shooter : MonoBehaviour
     public float arcRange = 1;
     private Vector3 destination;
     private bool leftHand;
-    private float timeToFire;
+    public float ftime;
     [SerializeField] PlayerAttributes playeratm;
     [SerializeField] ManaBar mb;
 
@@ -26,10 +26,11 @@ public class Shooter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        ftime += Time.deltaTime;
         // Check mana and time to fire
-        if (Input.GetKey("q") && Time.time >= timeToFire && playeratm.Mana >= 10f)
+        if (Input.GetKey("q") && ftime >= fireRate && playeratm.Mana >= 10f)
         {
-            timeToFire = Time.time + 1 / fireRate;
+            ftime = 0;
             mb.loseShootMana(10);  // Spend mana here
             ShootProjectile();
         }
