@@ -14545,6 +14545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InteractableUI: {fileID: 544784914}
   InteractableUI2: {fileID: 795848509}
+  playerAttributes: {fileID: 479684353}
   Portal1Interaction: {fileID: 280933445}
   Portal2Interaction: {fileID: 1617899382}
 --- !u!114 &1285426230
