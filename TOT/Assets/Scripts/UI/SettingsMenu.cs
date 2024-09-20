@@ -1,45 +1,14 @@
-// using System.Collections;
-// using System.Collections.Generic;
-// using UnityEngine;
-// using UnityEngine.SceneManagement;
-
-// public class SettingsMenu : MonoBehaviour
-// {
-//     public void SetVolume (float volume)
-//     {
-//         Debug.Log(volume);
-//     }
-
-//     public void MBack()
-//     {
-//         Time.timeScale = 1f;
-//         SceneManager.LoadScene("MAINMENU");
-//     }
-
-//     public void JBack()
-//     {
-//         Time.timeScale = 1f;
-//         SceneManager.LoadScene("Jack");
-//     }
-
-//     public void CBack()
-//     {
-//         Time.timeScale = 1f;
-//         SceneManager.LoadScene("Calib");
-//     }
-
-// }
-
-
-
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class SettingsMenu : MonoBehaviour
 {
+    // Method to load the main menu scene
     public void LoadMAINMENU()
     {
-        SceneManager.LoadScene("MAINMENU");
+        SceneManager.LoadScene("MAINMENU"); // Load the main menu scene
+        Time.timeScale = 0; // Pause the game (optional, if you want the game to stay paused)
     }
 }

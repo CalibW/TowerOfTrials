@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class EnemyAttributes : MonoBehaviour
 {
+     //creating varaibles(stats) for the enemies as well as linking the effects and scripts to this script
     public float Health;
     public float Mana;
     public float Strength;
@@ -24,8 +25,10 @@ public class EnemyAttributes : MonoBehaviour
 
     void Update()
     {
+     //check if health is less than or equal to 0
      if(Health <= 0)
      {
+          //if the tag of the gameobject is BasicEnemy then instntiate the death effect at the Enemies location and destroy the Enemy and death effect, as well as give experience to player and decrease the amount of spawned enemies in the enemy spawning script, as well as increase the amount of Basic Enemies Killed
           if(CompareTag("BasicEnemy"))
           {
                // Instantiate the death effect
@@ -37,6 +40,7 @@ public class EnemyAttributes : MonoBehaviour
                EnemySpawns.EnemyCount--;
                BasicAmountKilled++;
           }
+          //if the tag of the gameobject is Boss then instantiate the death effect and destroy the deatheffect and the boss as well as give experience to the player and increase the amount of boss killed.
           else if(CompareTag("Boss"))
           {
                // Instantiate the death effect
@@ -50,6 +54,7 @@ public class EnemyAttributes : MonoBehaviour
      }
     }
 
+   //function to apply damage to the enemy and generate pop up damage damage numbers
    public void TakeDamage(float amount)
    {
         Health -= amount;
@@ -58,6 +63,7 @@ public class EnemyAttributes : MonoBehaviour
         DamagePopUpGenerator.current.CreatePopUp(transform.position + randomness, amount.ToString(), Color.yellow);
    }
 
+   //function to deal damage to player
    public void DealDamage(GameObject target)
    {
         var playeratm = target.GetComponent<PlayerAttributes>();

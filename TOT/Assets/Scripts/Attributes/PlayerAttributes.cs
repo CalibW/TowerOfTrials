@@ -4,9 +4,12 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.SceneManagement;
 using UnityEngine.Assertions.Must;
+using Unity.VisualScripting.Dependencies.NCalc;
 
 public class PlayerAttributes : MonoBehaviour
 {
+
+   //creating the stats and variables of the player as well as linkning game object and the other scripts to this script
     public float Level;
     public float Experience;
     public float FirstLevelExperience;
@@ -33,52 +36,62 @@ public class PlayerAttributes : MonoBehaviour
     public EnemySpawning EnemySpawning;
    private string saveFilePath;
 
+      //when the game awakes load the saved player data
       void Awake()
    {
       LoadPlayerData(); // Automatically load the data when the game starts
 
    }
+
+   //when the game starts set the max mana as the players mana, and max health to the players healht, as well the experience needed to level up as the first level experience, as wall as set the path to save file
     void Start()
     {
-     saveFilePath = Application.persistentDataPath + "/playerSaveData.json";  // Path to save file
+     saveFilePath = Application.persistentDataPath + "/playerSaveData.json";
      MaxMana = Mana;
      MaxHealth = Health;
      ExperienceToNextLevel = FirstLevelExperience;
     }
 
     void Update()
-    {
-      if(Health == 0)
+    { 
+      //checks if health is less than or equal to 0 , and if it is load the loosing menu as the payer has died as well as destroy the gameObject(in this case the player)
+      if(Health <= 0)
       {
          SceneManager.LoadScene("LOOSINGMENU");
-         Time.timeScale = 1;
+         Time.timeScale = 0;
          Cursor.lockState = CursorLockMode.None;
          Cursor.visible = true;
          Destroy(gameObject);
       }
+      //if the level of the player is 0 the set the amount of experence needed to level up as the first level experience.
       if(Level == 0)
       {
          ExperienceToNextLevel = FirstLevelExperience;
-      } else if (Level > 0 && Level < 25)
+      }
+      //if the player level is greater than 0 and less than 25 then set the experience needed to level up as the first level experience time the exp increase to the power of the players level.
+      else if (Level > 0 && Level < 25)
       {
          ExperienceToNextLevel = FirstLevelExperience * Mathf.Pow(ExpIncrease, Level);
       }
+      //if the players level is 25 then set the experience needed as 9999999;
       else if(Level == 25)
       {
          ExperienceToNextLevel = 9999999;
       }
       LevelUp();
-
+      
+      //if the input is the s key then save the players data
       if (Input.GetKeyDown(KeyCode.S))
     {
         SavePlayerData(); // Call this to save the game
     }
-
+    //if the input key is L load the saved data.
     if (Input.GetKeyDown(KeyCode.L))
     {
         LoadPlayerData(); // Call this to load the game
     }
 
+    // function for the player to take damage and generate the damage pop up numbers
     }
      public void TakeDamage(float amount)
      {
@@ -88,6 +101,7 @@ public class PlayerAttributes : MonoBehaviour
         DamagePopUpGenerator.current.CreatePopUp(transform.position + randomness, amount.ToString(), Color.yellow);
      }
 
+      //function to deal damage according to the players strength stat
      public void DealDamage(GameObject target)
      {
         var enemyatm = target.GetComponent<EnemyAttributes>();
@@ -97,6 +111,7 @@ public class PlayerAttributes : MonoBehaviour
         }
      }
 
+      //function to level up when the expereince the player has exceeds the experience to next level, and when this does increase level by one and statpoint by statpoints given
      public void LevelUp()
      {
          if(Experience >= ExperienceToNextLevel)
@@ -109,6 +124,7 @@ public class PlayerAttributes : MonoBehaviour
       }
      }
 
+      // save the data that is linked below
      public void SavePlayerData()
     {
         PlayerSaveData saveData = new PlayerSaveData

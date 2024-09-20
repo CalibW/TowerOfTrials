@@ -6,42 +6,47 @@ using UnityEngine.AI;
 
 public class EnemySpawningLevel1 : MonoBehaviour
 {
-    public GameObject Enemy1;
-    public GameObject Enemy2;
-    public float EnemyCount;
-    public float MaxEnemy;
-    public float MaxEnemyAllowed;
-    public float RemainingSpawns;
-    public float SpawnRate;
+    // Prefabs for the enemy types to spawn
+    public GameObject Enemy1; 
+    public GameObject Enemy2; 
+    public float EnemyCount; // Current number of enemies spawned
+    public float MaxEnemy; // Maximum enemies allowed to spawn
+    public float MaxEnemyAllowed; // Total maximum enemies allowed in the game
+    public float RemainingSpawns; // Remaining number of spawns left
+    public float SpawnRate; // Rate at which enemies spawn
     public float InnerRadius;  // Minimum distance from the center (inner boundary)
     public float OuterRadius; // Maximum distance from the center (outer boundary)
-    public int MaxAttempts = 10;     // Number of attempts to find a valid position on NavMesh
+    public int MaxAttempts = 10; // Number of attempts to find a valid position on NavMesh
 
     void Start()
     {
-        RemainingSpawns = MaxEnemyAllowed;
-        StartCoroutine(EnemySpawn());
+        RemainingSpawns = MaxEnemyAllowed; // Initialize remaining spawns
+        StartCoroutine(EnemySpawn()); // Start the enemy spawn coroutine
     }
 
     IEnumerator EnemySpawn()
     {
+        // Continue spawning while there are remaining spawns
         while(RemainingSpawns > 0)
         {
+            // Check if the current enemy count is less than the maximum allowed
             if (MaxEnemy <= MaxEnemyAllowed)
             {
                 if (EnemyCount < MaxEnemy)
                 {
-                    Vector3 spawnPosition;
+                    Vector3 spawnPosition; // Variable to hold the spawn position
+                    // Try to get a random position on the NavMesh within the specified ring
                     if (TryGetRandomNavMeshPositionInRing(out spawnPosition))
                     {
+                        // Randomly select which enemy to spawn
                         GameObject enemyToSpawn = Random.value > 0.5f ? Enemy1 : Enemy2;
-                        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
-                        EnemyCount++;
-                        RemainingSpawns--;
+                        Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity); // Instantiate the enemy at the spawn position
+                        EnemyCount++; // Increment the count of enemies spawned
+                        RemainingSpawns--; // Decrement the remaining spawns
                     }
                 }
                 
-                yield return new WaitForSeconds(SpawnRate);
+                yield return new WaitForSeconds(SpawnRate); // Wait for the specified spawn rate before spawning next enemy
             }
         }
     }
@@ -51,19 +56,19 @@ public class EnemySpawningLevel1 : MonoBehaviour
     {
         for (int i = 0; i < MaxAttempts; i++)
         {
-            Vector3 randomPoint = GetRandomPointInRing(InnerRadius, OuterRadius);
+            Vector3 randomPoint = GetRandomPointInRing(InnerRadius, OuterRadius); // Get a random point in the ring
             NavMeshHit hit;
 
             // Check if the random point is on the NavMesh
             if (NavMesh.SamplePosition(randomPoint, out hit, OuterRadius, NavMesh.AllAreas))
             {
-                result = hit.position;
-                return true;
+                result = hit.position; // Set the result to the valid NavMesh position
+                return true; // Valid position found
             }
         }
 
-        result = Vector3.zero;
-        return false;
+        result = Vector3.zero; // No valid position found
+        return false; 
     }
 
     // Function to generate a random point within a ring (between two radii)
@@ -86,11 +91,11 @@ public class EnemySpawningLevel1 : MonoBehaviour
     // Visualize the ring-shaped spawn area using Gizmos
     void OnDrawGizmos()
     {
-        // Draw outer boundary (135m radius)
+        // Draw outer boundary (OuterRadius)
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, OuterRadius);
 
-        // Draw inner boundary (90m radius)
+        // Draw inner boundary (InnerRadius)
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, InnerRadius);
     }

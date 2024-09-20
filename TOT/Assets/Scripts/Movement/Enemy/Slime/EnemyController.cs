@@ -2,24 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.UIElements;
 
 public class EnemyController : MonoBehaviour
 {
-    public float lookRadius;
-    Transform target;
-    NavMeshAgent agent;
-    public Animator animator;
-    public GameObject player;
-    public float basicattackdistance;
-    public float BossAttackDistance;
-    float cooldown;
+    public float lookRadius; // Radius within which the enemy can detect the player
+    Transform target; // Reference to the player
+    NavMeshAgent agent; // NavMesh agent for enemy movement
+    public Animator animator; // Animator for enemy animations
+    public GameObject player; // Reference to the player GameObject
+    public float basicattackdistance; // Distance for basic attack
+    public float BossAttackDistance; // Distance for boss attack
+    float cooldown; // Cooldown timer for attacks
 
     // Add reference to the enemy's attack value
-    [SerializeField] private EnemyAttributes enemyAttributes;
+    public EnemyAttributes enemyAttributes;
 
-       void Start()
+    void Start()
     {
+        // Get the player target from PlayerManager
         target = PlayerManager.instance.player.transform;
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
@@ -36,21 +36,24 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
+        // Continuously update agent speed and cooldown timer
         UpdateAgentSpeed();
         cooldown -= Time.deltaTime;
-        animator.SetFloat("Speed", agent.velocity.magnitude);
-        float distance = Vector3.Distance(target.position, transform.position);
-        if (distance <= lookRadius)
+        animator.SetFloat("Speed", agent.velocity.magnitude); // Set animation speed based on movement
+
+        float distance = Vector3.Distance(target.position, transform.position); // Calculate distance to the player
+        if (distance <= lookRadius) // If the player is within the look radius
         {
-            agent.destination = target.position;
+            agent.destination = target.position; // Move towards the player
         }
 
-        if (distance <= agent.stoppingDistance)
+        if (distance <= agent.stoppingDistance) // If close enough to the player
         {
-            FaceTarget();
+            FaceTarget(); // Face the player
         }
         
-        if((transform.position - player.transform.position).magnitude <= basicattackdistance && cooldown <= 0 && CompareTag("BasicEnemy"))
+        // Basic attack logic for regular enemies
+        if ((transform.position - player.transform.position).magnitude <= basicattackdistance && cooldown <= 0 && CompareTag("BasicEnemy"))
         {
             PlayerAttributes playerAttributes = player.GetComponent<PlayerAttributes>();
             if (playerAttributes != null)
@@ -58,10 +61,11 @@ public class EnemyController : MonoBehaviour
                 // Reduce the player's health based on the enemy's attack
                 playerAttributes.TakeDamage(enemyAttributes.Strength);
             }
-            cooldown = 1f;
+            cooldown = 1f; // Reset cooldown
         }
 
-        if((transform.position - player.transform.position).magnitude <= BossAttackDistance && cooldown <= 0 && CompareTag("Boss"))
+        // Attack logic for bosses
+        if ((transform.position - player.transform.position).magnitude <= BossAttackDistance && cooldown <= 0 && CompareTag("Boss"))
         {
             PlayerAttributes playerAttributes = player.GetComponent<PlayerAttributes>();
             if (playerAttributes != null)
@@ -69,12 +73,13 @@ public class EnemyController : MonoBehaviour
                 // Reduce the player's health based on the enemy's attack
                 playerAttributes.TakeDamage(enemyAttributes.Strength);
             }
-            cooldown = 1f;
+            cooldown = 1f; // Reset cooldown
         }
     }
 
     void FaceTarget()
     {
+        // Calculate direction to the target and rotate to face it
         Vector3 direction = (target.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
@@ -82,91 +87,17 @@ public class EnemyController : MonoBehaviour
 
     void UpdateAgentSpeed()
     {
+        // Adjust the speed of the NavMesh agent based on the enemy's agility
         if (agent != null && enemyAttributes != null)
         {
-            // Adjust the speed based on agility
             agent.speed = enemyAttributes.Agility; // You might want to apply some multiplier or min/max constraints
         }
     }
 
     void OnDrawGizmosSelected()
     {
+        // Visualize the look radius in the editor
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, lookRadius);
     }
 }
-
-
-
-// using UnityEngine;
-// using UnityEngine.AI;
-
-// public class EnemyController : MonoBehaviour
-// {
-//     public float lookRadius;
-//     Transform target;
-//     NavMeshAgent agent;
-//     public Animator animator;
-//     public GameObject player;
-//     public float attackdistance;
-//     float cooldown;
-
-//     [SerializeField] private EnemyAttributes enemyAttributes;
-
-//     void Start()
-//     {
-//         target = PlayerManager.instance.player.transform;
-//         agent = GetComponent<NavMeshAgent>();
-//         animator = GetComponent<Animator>();
-
-//         if (enemyAttributes == null)
-//         {
-//             enemyAttributes = GetComponent<EnemyAttributes>();
-//         }
-//     }
-
-//     void Update()
-//     {
-//         cooldown -= Time.deltaTime;
-//         animator.SetFloat("Speed", agent.velocity.magnitude);
-//         float distance = Vector3.Distance(target.position, transform.position);
-
-//         if (distance <= lookRadius)
-//         {
-//             agent.destination = target.position;
-//             enemyAttributes.SetRunSpeed(); // Run while tracking the player
-//         }
-//         else
-//         {
-//             enemyAttributes.SetWalkSpeed(); // Default to walk speed if not tracking
-//         }
-
-//         if (distance <= agent.stoppingDistance)
-//         {
-//             FaceTarget();
-//         }
-
-//         // if ((transform.position - player.transform.position).magnitude <= attackdistance && cooldown <= 0)
-//         // {
-//         //     PlayerAttributes playerAttributes = player.GetComponent<PlayerAttributes>();
-//         //     if (playerAttributes != null)
-//         //     {
-//         //         playerAttributes.TakeDamage(enemyAttributes.Strength);
-//         //     }
-//         //     cooldown = 1f;
-//         // }
-//     }
-
-//     void FaceTarget()
-//     {
-//         Vector3 direction = (target.position - transform.position).normalized;
-//         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(direction.x, 0, direction.z));
-//         transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
-//     }
-
-//     void OnDrawGizmosSelected()
-//     {
-//         Gizmos.color = Color.red;
-//         Gizmos.DrawWireSphere(transform.position, lookRadius);
-//     }
-// }

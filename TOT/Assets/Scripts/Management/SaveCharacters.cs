@@ -5,28 +5,33 @@ using UnityEngine;
 
 public class SaveCharacters : MonoBehaviour
 {
-    public PlayerAttributes PlayerAttributes;
-     void Awake()
+    public PlayerAttributes PlayerAttributes; // Reference to the player's attributes
+
+    void Awake()
     {
+        // Check if there are multiple Quest objects in the scene
         if (FindObjectsOfType<Quest>().Length > 1)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Destroy this GameObject if there is more than one Quest object
         }
         else
         {
-            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject); // Keep this GameObject when loading new scenes
         }
     }
+
     void Start()
     {
+        // Ensure this GameObject persists across scene loads
         DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
     {
-        if(PlayerAttributes == null)
+        // Check if PlayerAttributes is null (destroy this GameObject if it is)
+        if (PlayerAttributes == null)
         {
-            Destroy(gameObject);
+            Destroy(gameObject); // Remove this GameObject if there are no player attributes
         }
     }
 }

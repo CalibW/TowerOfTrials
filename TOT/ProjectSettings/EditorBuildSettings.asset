@@ -6,17 +6,11 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Calib.unity
-    guid: 8e4080dc9e914ba408b366123c89a5a1
-  - enabled: 1
-    path: Assets/Scenes/Jack.unity
-    guid: 8b33abe16a988044dbfb4c17d78aedbf
-  - enabled: 1
     path: Assets/Scenes/Level 1.unity
     guid: 33497c8d5174266489bcda3fe55fc174
   - enabled: 1
     path: Assets/Scenes/Level 2.unity
-    guid: 3a3ab26edba1ca0499e8413ee0b1f412
+    guid: 8e4080dc9e914ba408b366123c89a5a1
   - enabled: 1
     path: Assets/Scenes/MAINMENU.unity
     guid: 8d2499525246f7046b3d0faaa98e7b6f

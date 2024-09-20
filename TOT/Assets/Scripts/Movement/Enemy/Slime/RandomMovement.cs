@@ -1,122 +1,62 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI; //important
+using UnityEngine.AI; // Importing NavMesh for AI navigation
 
-public class RandomMovement : MonoBehaviour //don't forget to change the script name if you haven't
+public class RandomMovement : MonoBehaviour // Ensure the script name matches the file name
 {
-    public NavMeshAgent agent;
-    public Animator animator;
-    public float range; //radius of sphere
+    public NavMeshAgent agent; // Reference to the NavMesh agent for movement
+    public Animator animator; // Reference to the animator for handling animations
+    public float range; // Radius of the sphere in which the agent will move
 
-    public Transform centrePoint; //centre of the area the agent wants to move around in
-    //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
+    public Transform centrePoint; // Center point of the area the agent wants to move around
+    // If you don't care about a specific area, you can set centrePoint to the agent's transform
 
     void Start()
     {
-        agent = GetComponent<NavMeshAgent>();
-        animator = GetComponent<Animator>();
-        centrePoint = gameObject.transform;
+        agent = GetComponent<NavMeshAgent>(); // Get the NavMeshAgent component
+        animator = GetComponent<Animator>(); // Get the Animator component
+        centrePoint = gameObject.transform; // Set the centre point to the agent's position
     }
 
-    
     void Update()
     {
-        if(agent.remainingDistance <= agent.stoppingDistance) //done with path
+        // Check if the agent has completed its path
+        if(agent.remainingDistance <= agent.stoppingDistance)
         {
-            Vector3 point;
-            if (RandomPoint(centrePoint.position, range, out point)) //pass in our centre point and radius of area
+            Vector3 point; // Variable to store the random point
+            // Try to find a random point within the specified range
+            if (RandomPoint(centrePoint.position, range, out point))
             {
-                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
-                agent.SetDestination(point);
+                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); // Visualize the point with a ray
+                agent.SetDestination(point); // Set the agent's destination to the random point
             }
-            animator.SetFloat("Speed", agent.velocity.magnitude);
+            animator.SetFloat("Speed", agent.velocity.magnitude); // Update animator speed parameter
         }
-
     }
+
+    // Method to find a random point within a specified range around a center point
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
     {
+        // Generate a random point within a sphere
+        Vector3 randomPoint = center + Random.insideUnitSphere * range; 
+        NavMeshHit hit; // Store the hit information from the NavMesh
 
-        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
-        NavMeshHit hit;
+        // Sample the NavMesh to see if the random point is valid
         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
         {
-            result = hit.position;
-            return true;
+            result = hit.position; // If valid, set the result to the hit position
+            return true; // Return true to indicate success
         }
 
-        result = Vector3.zero;
-        return false;
+        result = Vector3.zero; // If not valid, return zero vector
+        return false; // Return false to indicate failure
     }
 
-    void OnDrawGizmosSelected ()
+    // Visualize the movement range in the editor
+    void OnDrawGizmosSelected()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.color = Color.red; // Set gizmo color to red
+        Gizmos.DrawWireSphere(transform.position, range); // Draw a wire sphere to represent the range
     }
 }
-
-
-
-// using UnityEngine;
-// using UnityEngine.AI;
-
-// public class RandomMovement : MonoBehaviour
-// {
-//     public NavMeshAgent agent;
-//     public Animator animator;
-//     public float range; // radius of sphere
-
-//     public Transform centrePoint; // centre of the area the agent wants to move around in
-
-//     void Start()
-//     {
-//         agent = GetComponent<NavMeshAgent>();
-//         animator = GetComponent<Animator>();
-//         centrePoint = gameObject.transform;
-
-//         // Ensure the agent's speed is updated based on Agility
-//         EnemyAttributes enemyAttributes = GetComponent<EnemyAttributes>();
-//         if (enemyAttributes != null)
-//         {
-//             agent.speed = enemyAttributes.Agility; // Set speed to Agility stat
-//         }
-//     }
-
-//     void Update()
-//     {
-//         if(agent.remainingDistance <= agent.stoppingDistance) // done with path
-//         {
-//             Vector3 point;
-//             if (RandomPoint(centrePoint.position, range, out point)) // pass in our centre point and radius of area
-//             {
-//                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); // so you can see with gizmos
-//                 agent.SetDestination(point);
-//             }
-//             animator.SetFloat("Speed", agent.velocity.magnitude);
-//         }
-//     }
-
-//     bool RandomPoint(Vector3 center, float range, out Vector3 result)
-//     {
-//         Vector3 randomPoint = center + Random.insideUnitSphere * range; // random point in a sphere 
-//         NavMeshHit hit;
-//         if (NavMesh.SamplePosition(randomPoint, out hit, 1.0f, NavMesh.AllAreas))
-//         {
-//             result = hit.position;
-//             return true;
-//         }
-
-//         result = Vector3.zero;
-//         return false;
-//     }
-
-//     void OnDrawGizmosSelected()
-//     {
-//         Gizmos.color = Color.red;
-//         Gizmos.DrawWireSphere(transform.position, range);
-//     }
-// }
-
-
-

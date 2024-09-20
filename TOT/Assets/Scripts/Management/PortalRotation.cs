@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class PortalRotation : MonoBehaviour
 {
+    public GameObject Portal; // Reference to the portal GameObject
+    public float RotateSpeed; // Speed at which the portal will rotate
 
-    public GameObject Portal;
-    public float RotateSpeed;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +16,7 @@ public class PortalRotation : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Portal.transform.Rotate(0,0, RotateSpeed);
+        // Rotate the portal around the Z-axis based on the RotateSpeed
+        Portal.transform.Rotate(0, 0, RotateSpeed);
     }
 }

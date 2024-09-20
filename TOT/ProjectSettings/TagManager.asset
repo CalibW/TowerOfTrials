@@ -10,6 +10,7 @@ TagManager:
   - BasicEnemy
   - Boss
   - PlayerStartLevel2
+  - SpawningPoint
   layers:
   - Default
   - TransparentFX
