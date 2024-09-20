@@ -8,7 +8,6 @@ public class Projectile : MonoBehaviour
     public float impactidie;
     public float lifeline;
     public bool collided;
-
     private PlayerAttributes playeratm;  // Reference to the player's AttributesManager
 
     void Start()

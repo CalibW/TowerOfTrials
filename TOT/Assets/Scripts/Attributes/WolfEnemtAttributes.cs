@@ -22,8 +22,8 @@ public class WolfEnemyAttributes : MonoBehaviour
     public float runSpeed;
     public GameObject Enemy;
     public NavMeshAgent agent;
-    [SerializeField] PlayerAttributes PlayerAtm;
-    [SerializeField] EnemySpawning EnemySpawns;
+    public PlayerAttributes PlayerAtm;
+    public EnemySpawning EnemySpawns;
 
     void Start ()
     {

@@ -16,7 +16,7 @@ public class EnemyController : MonoBehaviour
     float cooldown;
 
     // Add reference to the enemy's attack value
-    [SerializeField] private EnemyAttributes enemyAttributes;
+    public EnemyAttributes enemyAttributes;
 
        void Start()
     {

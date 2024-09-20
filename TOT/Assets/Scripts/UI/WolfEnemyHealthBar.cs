@@ -12,7 +12,7 @@ public class WolfEnemyHealthBar : MonoBehaviour
     public float healthRecoveryRate;
     public float recoveryInterval;
     public float health;
-    [SerializeField] private WolfEnemyAttributes WEnemyAtm;
+    public WolfEnemyAttributes WEnemyAtm;
 
     void Start()
     {

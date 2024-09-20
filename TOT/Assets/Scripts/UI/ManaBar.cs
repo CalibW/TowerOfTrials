@@ -8,7 +8,7 @@ public class ManaBar : MonoBehaviour
 {
     public Slider manaSlider;
     public Slider easeManaSlider;
-    [SerializeField] PlayerAttributes atm;
+    public PlayerAttributes atm;
     public float manaDashLossRate;
     public float manaFireBallLossRate;
     public float timeToLoseMana;

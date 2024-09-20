@@ -14,8 +14,8 @@ public class Shooter : MonoBehaviour
     private Vector3 destination;
     private bool leftHand;
     public float ftime;
-    [SerializeField] PlayerAttributes playeratm;
-    [SerializeField] ManaBar mb;
+    public PlayerAttributes playeratm;
+    public ManaBar mb;
 
     void Start()
     {

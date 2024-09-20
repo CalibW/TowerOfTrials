@@ -13,7 +13,7 @@ public class HealthBar : MonoBehaviour
     public float timeToRecoverHealth;
     public float healthRecoveryRate;
     public float recoveryInterval;
-    [SerializeField] private PlayerAttributes playeratm;
+    public PlayerAttributes playeratm;
 
     void Start()
     {

@@ -9,9 +9,9 @@ public class StatsMenu : MonoBehaviour
     public bool StatsMenuOpen;
     public GameObject statsMenuUI;
     public float StatPoints;
-    [SerializeField] PlayerAttributes PlayerAtm;
-    [SerializeField] ManaBar MB;
-    [SerializeField] HealthBar HB;
+    public PlayerAttributes PlayerAtm;
+    public ManaBar MB;
+    public HealthBar HB;
     public TMP_Text statPoints;
     public TMP_Text HP;
     public TMP_Text AGI;

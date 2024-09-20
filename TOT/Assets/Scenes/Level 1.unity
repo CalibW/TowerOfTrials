@@ -25193,6 +25193,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Enemy1: {fileID: 219392817}
   Enemy2: {fileID: 831910440}
+  sword: {fileID: 8518905468183350099}
   EnemyCount: 0
   MaxEnemy: 20
   MaxEnemyAllowed: 30
@@ -33550,13 +33551,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Sword: {fileID: 8518905468183350099}
   Player: {fileID: 479684352}
-  Enemy1: {fileID: 219392817}
-  Enemy2: {fileID: 831910440}
+  Enemy1: []
   PlayerAttributes: {fileID: 479684353}
-  enemyAttributes: {fileID: 219392819}
-  wolfEnemyAttributes: {fileID: 831910442}
   CanAttack: 1
-  attackdistance: 5
+  attackdistance: 2.5
   AttackCooldown: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

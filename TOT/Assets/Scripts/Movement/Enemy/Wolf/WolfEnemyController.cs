@@ -11,7 +11,7 @@ public class WolfEnemyController : MonoBehaviour
     public float attackdistance;
     float cooldown;
 
-    [SerializeField] private WolfEnemyAttributes wolfenemyAttributes;
+    public WolfEnemyAttributes wolfenemyAttributes;
 
     void Start()
     {

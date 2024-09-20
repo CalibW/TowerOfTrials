@@ -8,6 +8,7 @@ public class EnemySpawning : MonoBehaviour
 {
     public GameObject Enemy1;
     public GameObject Enemy2;
+    public GameObject sword;
     public float EnemyCount;
     public float MaxEnemy;
     public float MaxEnemyAllowed;
@@ -37,7 +38,10 @@ public class EnemySpawning : MonoBehaviour
                     // Spawn a random enemy and make sure it has the proper tag and attributes
                     GameObject enemyToSpawn = Random.value > 0.5f ? Enemy1 : Enemy2;
                     var spawnedEnemy = Instantiate(enemyToSpawn, spawnPosition, Quaternion.identity);
+                    WeaponController wp = sword.GetComponent<WeaponController>();
 
+                    wp.Enemy1.Add(spawnedEnemy);
+       
                     // Ensure the spawned enemy is tagged correctly
                     if (spawnedEnemy.CompareTag("BasicEnemy"))
                     {
